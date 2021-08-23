@@ -8,4 +8,11 @@ const removeBook = (book) => ({
   payload: book,
 });
 
-export { createBook, removeBook };
+const updateFilter = (filter) => ({
+  type: 'updateFilter',
+  payload: {
+    filter,
+  },
+});
+
+export { createBook, removeBook, updateFilter };
