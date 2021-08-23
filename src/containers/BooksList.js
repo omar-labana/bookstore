@@ -1,12 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import initialState from '../reducers/initialState';
+import { useSelector, useDispatch } from 'react-redux';
 import Book from '../components/Book';
+import { removeBook } from '../actions/index';
 
-const init = () => initialState.books;
-const renderBooks = (books) => books.map((book) => (<Book book={book} key={book.id} />));
 const BooksList = () => {
-  const books = useSelector(init);
+  const invoke = useDispatch();
+  const books = useSelector((state) => state.books.books);
+  const handleRemoveBook = (book) => {
+    invoke(removeBook(book));
+  };
+  const renderBooks = (k) => k.map((b) => (<Book book={b} key={b.id} event={handleRemoveBook} />));
+
   return (
     <table className="table-auto">
       <thead>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Book = (props) => {
-  const { book } = props;
+  const { book, event } = props;
   const { id, title, category } = book;
   return (
     <>
@@ -10,6 +10,9 @@ const Book = (props) => {
         <td>{id}</td>
         <td>{title}</td>
         <td>{category}</td>
+        <td>
+          <button type="button" name="button" onClick={() => event(id)}>X</button>
+        </td>
       </tr>
     </>
   );
@@ -17,10 +20,11 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
   }).isRequired,
+  event: PropTypes.func.isRequired,
 };
 
 export default Book;

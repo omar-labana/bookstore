@@ -1,33 +1,33 @@
-// const categories = ["Action", "Biography", "History", "Horror", "Kids", "Learning", "Sci-Fi"]
+import { v4 as uuidv4 } from 'uuid';
+
 const initialState = {
   books: [
     {
-      id: 1,
+      id: uuidv4(),
       title: 'Weird!',
       category: 'Horror',
     },
     {
-      id: 2,
+      id: uuidv4(),
       title: 'Salt',
       category: 'History',
     },
     {
-      id: 3,
+      id: uuidv4(),
       title: 'Kill',
       category: 'Action',
     },
     {
-      id: 4,
+      id: uuidv4(),
       title: 'Animals',
       category: 'Kids',
     },
     {
-      id: 5,
+      id: uuidv4(),
       title: 'Chickens',
       category: 'Learning',
     },
   ],
-  count: 5,
 };
 
 export default initialState;
