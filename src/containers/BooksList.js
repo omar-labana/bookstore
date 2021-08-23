@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Book from '../components/Book';
-import { removeBook } from '../actions/index';
+import { removeBook, updateFilter } from '../actions/index';
+import CategoryFilter from '../components/CategoryFilter';
 
 const BooksList = () => {
   const invoke = useDispatch();
@@ -10,20 +11,29 @@ const BooksList = () => {
     invoke(removeBook(book));
   };
   const renderBooks = (k) => k.map((b) => (<Book book={b} key={b.id} event={handleRemoveBook} />));
+  const target = useSelector((state) => state.filter);
+  const show = books.filter((book) => book.category === target || target === 'All');
+  const handleFilter = (e) => {
+    const data = e.target.value;
+    invoke(updateFilter(data));
+  };
 
   return (
-    <table className="table-auto">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderBooks(books)}
-      </tbody>
-    </table>
+    <>
+      <CategoryFilter target={target} handleFilter={handleFilter} />
+      <table className="table-auto">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {renderBooks(show)}
+        </tbody>
+      </table>
+    </>
   );
 };
 
