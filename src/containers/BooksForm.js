@@ -12,14 +12,10 @@ const renderCategories = (categories) => categories.map((category) => (
 const BookForm = () => {
   const [state, setState] = useState({ title: '', category: 'Action' });
   const invoke = useDispatch();
-  const updateTitle = (e) => {
-    const title = e.target.value;
-    setState((prevState) => ({ ...prevState, title }));
-  };
-
-  const updateCategory = (e) => {
-    const category = e.target.value;
-    setState((prevState) => ({ ...prevState, category }));
+  const handleChange = (e) => {
+    const { id } = e.target;
+    const { value } = e.target;
+    setState((prevState) => ({ ...prevState, [id]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -31,14 +27,16 @@ const BookForm = () => {
     };
 
     invoke(createBook(book));
+
+    setState({ title: '', category: '' });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" id="title" placeholder="Title" onChange={updateTitle} />
-      <label htmlFor="categories">
+      <input type="text" id="title" placeholder="Title" onChange={(e) => handleChange(e)} />
+      <label htmlFor="category">
         Category:
-        <select id="categories" onChange={updateCategory}>
+        <select id="category" onChange={(e) => handleChange(e)}>
           {renderCategories(categories)}
         </select>
       </label>
