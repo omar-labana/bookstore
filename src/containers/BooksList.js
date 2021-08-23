@@ -21,14 +21,7 @@ const BooksList = () => {
   return (
     <>
       <CategoryFilter target={target} handleFilter={handleFilter} />
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Category</th>
-          </tr>
-        </thead>
+      <table className="table-auto w-full mt-5">
         <tbody>
           {renderBooks(show)}
         </tbody>

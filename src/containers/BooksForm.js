@@ -32,16 +32,16 @@ const BookForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" id="title" placeholder="Title" onChange={(e) => handleChange(e)} />
-      <label htmlFor="category">
-        Category:
-        <select id="category" onChange={(e) => handleChange(e)}>
+    <>
+      <h2 className="text-xl font-bold text-gray-400 mb-3">ADD NEW BOOK</h2>
+      <form onSubmit={handleSubmit} className="flex gap-6">
+        <input type="text" id="title" placeholder="Title" onChange={(e) => handleChange(e)} className="w-1/2 p-3 rounded" />
+        <select id="category" onChange={(e) => handleChange(e)} className="w-1/4 p-3 rounded">
           {renderCategories(categories)}
         </select>
-      </label>
-      <input type="submit" value="Add Book" />
-    </form>
+        <input type="submit" value="Add Book" className="w-1/4 p-3 rounded bg-blue-500 text-white" />
+      </form>
+    </>
   );
 };
 
